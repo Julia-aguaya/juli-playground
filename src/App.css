@@ -1,0 +1,641 @@
+
+.hero {
+  min-height: 100vh;
+  padding: 32px;
+
+  display:grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns of equal width */
+  grid-template-rows: auto 1fr auto auto; /* fila superior - espacio flexible - fila inferior */
+  position: relative;
+
+}
+
+.hero h1 {
+  margin:0;
+  font-size: clamp(5rem, 18vw, 16rem);  
+  line-height: 0.85;
+  font-weight: 500;
+
+}
+
+.hero_title {
+  margin: 0;
+  font-size: clamp(5rem, 18vw, 16rem);
+  line-height: 0.85;
+  font-weight: 700;
+  font-family: 'Public Sans', sans-serif;
+
+  grid-column: 1 / -1;
+  grid-row: 2; /* ocupa la segunda fila */
+
+  z-index: 3; /* asegura que el título esté por encima de la imagen y las burbujas */
+}
+
+.hero_eyebrow {
+  grid-column: 1 / -1; /* ocupa toda la fila */
+  grid-row: 1; /* ocupa la primera fila */
+
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero_role {
+  grid-column: 1; /* ocupa la primera columna */
+  grid-row: 3; /* ocupa la tercera fila */
+
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 2rem); /* tamaño de fuente adaptable */
+  max-width: 300px; ;
+}
+
+.hero_location {
+  grid-column: 2;
+  grid-row: 3; /* ocupa la tercera fila */
+
+  margin: 0;
+  justify-self: end; /* alinea el contenido a la derecha */
+  align-self: end; /* alinea el contenido al final de la fila */
+
+  font-size: 0.85rem; /* tamaño de fuente fijo */
+  text-transform: uppercase;
+}
+
+.hero_scroll {
+  grid-column: 1 / -1; /* ocupa toda la fila */
+  grid-row: 4; /* ocupa la cuarta fila */
+
+  margin: 0;
+  justify-self: end; /* alinea el contenido a la derecha */
+  
+  font-size: 0.75rem; /* tamaño de fuente fijo */
+  text-transform: uppercase;
+  letter-spacing: 0.08em; /* espaciado entre letras fijo */
+}
+
+.hero_art {
+  position: absolute;
+
+  width: min(42vw, 560px); /* ancho máximo de 520px o 38% del ancho de la ventana */
+
+  left: 58%; /* centra horizontalmente */
+  top: 43%; /* centra verticalmente */
+
+  transform: translate(-50%, -50%); /* centra el elemento en ambas direcciones. Sin translate, el borde de la imagen quedaría en el centro, no la imagen entera. */
+
+  z-index: 2;
+  
+  mix-blend-mode: multiply; /* asegura que la imagen esté por encima de las burbujas */
+}
+
+.hero_bubble {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  box-shadow:
+    inset -10px -12px 25px rgba(124, 199, 242, 0.2),
+    0 12px 35px rgba(21, 50, 74, 0.12); /* crea un degradado radial con varios colores y transparencias */
+  
+  z-index: 1; /* asegura que las burbujas estén detrás de la imagen */
+}
+
+.hero_bubble--blue {
+  width: 140px;
+  right: 8%;
+  top: 18%;
+
+  background: radial-gradient(
+    circle at 30% 25%,
+    rgba(255, 255, 255, 0.9),
+    rgba(124, 199, 242, 0.35) 35%,
+    rgba(168, 223, 142, 0.2) 65%,
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+.hero_bubble--pink {
+  width: 85px;
+
+  left: 12%;
+  top: 42%;
+
+  background: radial-gradient(
+    circle at 30% 25%,
+    rgba(255, 255, 255, 0.9),
+    rgba(245, 181, 207, 0.45) 35%,
+    rgba(245, 181, 207, 0.2) 65%,
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+.hero_bubble--yellow {
+  width: 55px;
+
+  right: 30%;
+  top: 55%;
+
+  background: radial-gradient(
+    circle at 30% 25%,
+    rgba(255, 255, 255, 0.9),
+    rgba(247, 231, 139, 0.45) 35%,
+    rgba(247, 231, 139, 0.2) 65%,
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+.selected_work {
+  min-height: 120vh;
+
+  padding: 80px 5px 140px;
+  position: relative;
+  overflow: hidden; /* asegura que las burbujas no se desborden del contenedor */
+  background-color: #bfe8ff;
+
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.35) 1px,
+      transparent 1px
+    );
+
+  background-size: 22px 22px;
+
+}
+
+.selected_work_cloud {
+  position: absolute;
+  width: min(38vw, 520px);
+  top: 5%;
+  right: 8%;
+  opacity: 0.42;
+  filter: brightness(1.25) saturate(0.8);
+
+  pointer-events: none;
+  z-index: 0;
+
+  animation: cloud_float 30s ease-in-out infinite alternate;
+}
+
+@keyframes cloud_float {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-120vw);
+  }
+}
+
+.selected_work_bubbles {
+  position: absolute;
+
+  width: min(24vw, 320px);
+  left: 43%;
+  top: 34%;
+  opacity: 0.42;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.selected_work_grass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1; /* asegura que la hierba esté detrás de todo el contenido */
+  pointer-events: none; /* asegura que la hierba no interfiera con la interacción del usuario */
+}
+
+.selected_work_sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+
+  animation: sparkle_twinkle 2.8s ease-in-out infinite;
+}
+
+.selected_work_sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+
+  animation: sparkle_twinkle 2.8s ease-in-out infinite;
+}
+
+/* entre Velita y Campanita */
+.selected_work_sparkle--one {
+  width: 95px;
+  top: 22%;
+  left: 39%;
+}
+
+/* derecha de Campanita */
+.selected_work_sparkle--two {
+  width: 75px;
+  top: 34%;
+  right: 14%;
+  animation-delay: 0.8s;
+}
+
+/* espacio entre Velita y Osito */
+.selected_work_sparkle--three {
+  width: 110px;
+  top: 49%;
+  left: 13%;
+  animation-delay: 1.4s;
+}
+
+/* centro, entre las cuatro ventanas */
+.selected_work_sparkle--four {
+  width: 80px;
+  top: 53%;
+  left: 48%;
+  animation-delay: 0.4s;
+}
+
+/* abajo, entre Osito y Caramelito */
+.selected_work_sparkle--five {
+  width: 100px;
+  top: 72%;
+  left: 43%;
+  animation-delay: 1.9s;
+}
+@keyframes sparkle_twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.8) rotate(-5deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25) rotate(5deg);
+  }
+}
+
+.selected_work_sticker {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.selected_work_sticker--user_one {
+  width: 105px;
+  top: 18%;
+  right: 7%;
+}
+
+.selected_work_sticker--user_two {
+  width: 85px;
+  top: 52%;
+  left: 7%;
+  transform: rotate(-8deg);
+}
+
+.selected_work_sticker--user_three {
+  width: 95px;
+  top: 80%;
+  right: 18%;
+  transform: rotate(6deg);
+}
+.selected_work_sticker--star_one {
+  width: 165px;
+  top: 35%;
+  left: 34%;
+  transform: rotate(-12deg);
+}
+
+.selected_work_sticker--star_two {
+  width: 125px;
+
+  top: 78%;
+  right: 82%;
+
+  transform: rotate(10deg);
+}
+
+.selected_work_sticker--star_three {
+  width: 115px;
+  top: 50%;
+  right: 15%;
+  left: auto;
+
+  transform: rotate(10deg);
+}
+
+.selected_work_sticker--star_one,
+.selected_work_sticker--star_two,
+.selected_work_sticker--star_three {
+  animation: sticker_float 5s ease-in-out infinite alternate;
+}
+
+.selected_work_sticker--star_two {
+  animation-delay: 1.2s;
+}
+
+.selected_work_sticker--star_three {
+  animation-delay: 2.1s;
+}
+
+@keyframes sticker_float {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 -10px;
+  }
+}
+
+.selected_work_sticker--user_one,
+.selected_work_sticker--user_two,
+.selected_work_sticker--user_three {
+  animation: user_float 4s ease-in-out infinite alternate;
+}
+
+.selected_work_sticker--user_two {
+  animation-delay: 0.8s;
+}
+
+.selected_work_sticker--user_three {
+  animation-delay: 1.6s;
+}
+
+@keyframes user_float {
+  from {
+    translate: 0 0;
+    rotate: -2deg;
+  }
+
+  to {
+    translate: 0 -14px;
+    rotate: 3deg;
+  }
+}
+
+.selected_work_label {
+  margin: 0 0 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.selected_work_title {
+  margin: 0 0 48px;
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.9;
+  font-weight: 600;
+}
+
+.selected_work_grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas de igual ancho */
+  gap: 20px;
+}
+
+.work_card {
+  width: 100%;
+  position: relative;
+  height: fit-content;
+  align-self: start;
+  background: #eef4f8;
+  border: 2px solid #6d8391;
+
+  box-shadow:
+    4px 4px 0 rgba(21, 50, 74, 0.18),
+    0 14px 30px rgba(21, 50, 74, 0.12);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  z-index: 2;
+
+  position: relative;
+  
+}
+
+.work_card_bar {
+  min-height: 32px;
+  padding: 6px 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    to bottom,
+    #dff4ff,
+    #91c8e4
+  );
+
+  border-bottom: 1px solid #6d8391;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.work_card_controls {
+  display: flex;
+  gap: 8px;
+}
+
+.work_card_canvas {
+  padding: 12px;
+  background: #ffffff;
+}
+
+.work_card_image {
+  width: 100%;
+  height:auto;
+
+  display: block;
+  object-fit: contain;
+
+  mix-blend-mode: multiply;
+}
+
+.work_card_footer {
+  padding: 8px 10px;
+  background: linear-gradient(
+    to bottom,
+    #dff4ff,
+    #91c8e4
+  );
+}
+
+.work_card_title {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.work_card_info {
+  margin: 3px 0 0;
+
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+
+.work_card:hover {
+  transform: translateY(-10px) scale(1.06);
+
+  box-shadow:
+    7px 7px 0 rgba(21, 50, 74, 0.16),
+    0 24px 45px rgba(21, 50, 74, 0.2);
+
+  z-index: 10;
+}
+
+.selected_work_grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.work_card:nth-child(1) {
+  grid-column: 2 / 6;
+  max-width: 320px;
+  
+}
+
+.work_card:nth-child(2) {
+  grid-column: 7 / 11;
+  margin-top: 100px;
+  max-width: 360px;
+  margin-top: 20px;
+}
+
+.work_card:nth-child(3) {
+  grid-column: 3 / 7;
+  margin-top: 70px;
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+.work_card:nth-child(4) {
+  grid-column: 8 / 12;
+  margin-top: 150px;
+  max-width: 380px;
+  margin-top: 20px;
+}
+
+
+/*RANITAAS*/
+
+.frog_collection {
+  position: relative;
+  min-height: 100vh;
+  padding: 80px 5vw;
+  overflow: hidden;
+}
+
+.frog_collection_stage {
+  display: grid;
+  place-items: center;
+  min-height: 650px;
+}
+
+.frog_collection_ring {
+  position: relative;
+  width: min(78vw, 850px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  animation: frog_orbit 35s linear infinite;
+}
+
+@keyframes frog_orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.frog_collection_water {
+    position: absolute;
+
+    width: 58%;
+    height: auto;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0.75;
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: water_float 5s ease-in-out infinite alternate;
+}
+
+.frog_collection_frog {
+    z-index: 2;
+}
+
+@keyframes water_float {
+    from {
+        translate: 0 0;
+        scale: 1;
+    }
+
+    to {
+        translate: 0 -7px;
+        scale: 1.03;
+    }
+}
+
+.frog_collection_frog_image {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+
+  animation: frog_counter_orbit 35s linear infinite;
+}
+
+@keyframes frog_counter_orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.frog_collection_frog--1 {
+  top: 2%;
+  left: 48%;
+  transform: translateX(-50%);
+}
+
+.frog_collection_frog--2 {
+  top: 42%;
+  right: -4%;
+  transform: translateY(-50%);
+}
+
+.frog_collection_frog--3 {
+  bottom: -2%;
+  left: 56%;
+  transform: translateX(-50%);
+}
+
+.frog_collection_frog--4 {
+  top: 52%;
+  left: -6%;
+  transform: translateY(-50%);
+}

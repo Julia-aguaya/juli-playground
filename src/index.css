@@ -1,0 +1,35 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+  --color-bg: #f4fbff;
+  --color-text: #15324a;
+
+  --color-blue: #7cc7f2;
+  --color-green: #a8df8e;
+  --color-pink: #f5b5cf;
+  --color-yellow: #f7e78b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 320px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Public Sans', sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
