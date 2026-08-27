@@ -1,9 +1,9 @@
 function FrogCollection() {
   const frogs = [
-    { id: 1, name: "Mushroom friend", image: "/images/frogs/frog-01.png" },
-    { id: 2, name: "Sleepy frog", image: "/images/frogs/frog-02.png" },
+    { id: 1, name: "Sleepy frog", image: "/images/frogs/frog-01.png" },
+    { id: 2, name: "Jar buddy", image: "/images/frogs/frog-02.png" },
     { id: 3, name: "Chips frog", image: "/images/frogs/frog-03.png" },
-    { id: 4, name: "Bottle buddy", image: "/images/frogs/frog-04.png" },
+    { id: 4, name: "Wizard frog", image: "/images/frogs/frog-04.png" },
   ];
 
   return (
